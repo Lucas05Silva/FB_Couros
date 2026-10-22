@@ -1,0 +1,12 @@
+<!-- TODO: placeholder — substituir pelo logo oficial da FB Couros -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" width="240" height="96">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#B8860B"/>
+      <stop offset="1" stop-color="#D4A843"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="236" height="92" rx="8" fill="none" stroke="url(#g)" stroke-width="2"/>
+  <text x="120" y="52" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" fill="url(#g)" letter-spacing="4">FB</text>
+  <text x="120" y="78" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#FAF7F2" letter-spacing="9">COUROS</text>
+</svg>

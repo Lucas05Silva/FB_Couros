@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* ── FB Couros design tokens (00-design-system.md) ── */
+:root {
+  /* Backgrounds */
+  --bg-primary: #faf7f2;
+  --bg-secondary: #f0ebe3;
+  --bg-dark: #1a1714;
+  --bg-dark-card: #2a2520;
+  --bg-darker: #141210;
+
+  /* Brand */
+  --brand-primary: #8b6914;
+  --brand-secondary: #b8860b;
+  --brand-accent: #d4a843;
+  --brand-warm: #6b4226;
+
+  /* Text */
+  --text-primary: #1a1714;
+  --text-secondary: #5c5549;
+  --text-tertiary: #8a8279;
+  --text-on-dark: #faf7f2;
+  --text-on-dark-muted: #b8b0a5;
+
+  /* UI */
+  --border-light: #e5ded4;
+  --border-dark: #3a352f;
+  --surface-glass: rgba(250, 247, 242, 0.08);
+
+  /* CTA */
+  --cta-whatsapp: #25d366;
+  --cta-whatsapp-hover: #1da851;
+  --cta-secondary: #8b6914;
+  --cta-secondary-hover: #a37d1a;
+
+  /* Feedback */
+  --success: #4caf50;
+  --warning: #ff9800;
+  --error: #f44336;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(26, 23, 20, 0.06);
+  --shadow-md: 0 4px 12px rgba(26, 23, 20, 0.08);
+  --shadow-lg: 0 8px 32px rgba(26, 23, 20, 0.12);
+  --shadow-gold: 0 4px 20px rgba(139, 105, 20, 0.15);
+
+  /* ── v2 "Dark Luxury" tokens (sections 02–07) ── */
+  --bg-deep: #0c0a08;
+  --bg-charcoal: #141110; /* doc: --bg-primary (v2) */
+  --bg-elevated: #1c1917;
+  --bg-subtle: #242120;
+  --bg-light: #f5f0e8;
+  --bg-light-alt: #ebe4d9;
+
+  --amber-deep: #8b6b1f;
+  --amber-primary: #c8942a;
+  --amber-bright: #daa635;
+  --amber-glow: #e8be5a;
+  --amber-soft: #f2d68a;
+
+  --ivory: #f2ede5; /* doc: --text-on-dark (v2) */
+  --ivory-muted: #a39b8f; /* doc: --text-on-dark-muted (v2) */
+  --ivory-faint: #7a7368; /* doc: --text-on-dark-faint */
+  --text-on-light: #0c0a08;
+  --text-on-light-muted: #4a453e;
+  --text-on-light-faint: #8a8279;
+
+  --line-dark: #2e2a25; /* doc: --border-dark (v2) */
+  --line-dark-strong: #3d3832;
+  --line-light: #d4ccc0; /* doc: --border-light (v2) */
+
+  --shadow-dark-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-dark-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-dark-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-amber: 0 4px 24px rgba(200, 148, 42, 0.15);
+  --shadow-amber-lg: 0 8px 40px rgba(200, 148, 42, 0.2);
+  --shadow-light-sm: 0 1px 3px rgba(12, 10, 8, 0.06);
+  --shadow-light-md: 0 4px 12px rgba(12, 10, 8, 0.08);
+  --shadow-light-lg: 0 8px 32px rgba(12, 10, 8, 0.12);
+}
+
+/* Tailwind utilities: bg-cream, text-on-dark, border-brand-primary, font-heading… */
+@theme inline {
+  --color-cream: var(--bg-primary);
+  --color-sand: var(--bg-secondary);
+  --color-dark: var(--bg-dark);
+  --color-dark-card: var(--bg-dark-card);
+  --color-darker: var(--bg-darker);
+
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-warm: var(--brand-warm);
+
+  --color-ink: var(--text-primary);
+  --color-ink-muted: var(--text-secondary);
+  --color-ink-subtle: var(--text-tertiary);
+  --color-on-dark: var(--text-on-dark);
+  --color-on-dark-muted: var(--text-on-dark-muted);
+
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+  --color-glass: var(--surface-glass);
+
+  --color-whatsapp: var(--cta-whatsapp);
+  --color-whatsapp-hover: var(--cta-whatsapp-hover);
+  --color-cta-secondary: var(--cta-secondary);
+  --color-cta-secondary-hover: var(--cta-secondary-hover);
+
+  --font-heading: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-accent: var(--font-cormorant), Georgia, serif;
+
+  --shadow-gold: var(--shadow-gold);
+
+  /* v2 — drop Tailwind's default amber scale so `amber-*` only means the brand tokens */
+  --color-amber-*: initial;
+  --color-deep: var(--bg-deep);
+  --color-charcoal: var(--bg-charcoal); /* not "base": that would collide with the text-base font size */
+  --color-elevated: var(--bg-elevated);
+  --color-subtle: var(--bg-subtle);
+  --color-light: var(--bg-light);
+  --color-light-alt: var(--bg-light-alt);
+  --color-amber-deep: var(--amber-deep);
+  --color-amber: var(--amber-primary);
+  --color-amber-bright: var(--amber-bright);
+  --color-amber-glow: var(--amber-glow);
+  --color-amber-soft: var(--amber-soft);
+  --color-ivory: var(--ivory);
+  --color-ivory-muted: var(--ivory-muted);
+  --color-ivory-faint: var(--ivory-faint);
+  --color-on-light: var(--text-on-light);
+  --color-on-light-muted: var(--text-on-light-muted);
+  --color-on-light-faint: var(--text-on-light-faint);
+  --color-line-dark: var(--line-dark);
+  --color-line-dark-strong: var(--line-dark-strong);
+  --color-line-light: var(--line-light);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── v2: noise texture over every dark section (keeps the dark from looking flat) ── */
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Horizontally scrollable rows (e.g. filter tabs on mobile) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Marquee: content is rendered twice, track slides by exactly one copy ── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+/* ── CTA Final: leather-like grain, breathing gold glow, pulsing WhatsApp button ── */
+.leather-texture {
+  opacity: 0.09;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.035 0.06' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
+  background-size: 400px;
+}
+
+.cta-breathe {
+  opacity: 0.23;
+  animation: cta-breathe 6s ease-in-out infinite;
+}
+
+@keyframes cta-breathe {
+  0%, 100% { opacity: 0.17; }
+  50% { opacity: 0.29; }
+}
+
+.cta-pulse {
+  box-shadow: 0 0 30px rgba(37, 211, 102, 0.25);
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px rgba(37, 211, 102, 0.25), 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(37, 211, 102, 0.25), 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-breathe,
+  .cta-pulse {
+    animation: none;
+  }
+}
