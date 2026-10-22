@@ -48,7 +48,7 @@ export function CtaFinal() {
 
         <motion.h2
           id="cta-final-title"
-          className="mt-6 font-heading text-[32px] leading-[1.1] font-bold text-balance md:text-[44px] lg:text-[56px]"
+          className="mt-6 font-heading text-[28px] leading-[1.12] font-bold tracking-[0.01em] text-balance md:text-[44px] md:leading-[1.1] md:tracking-normal lg:text-[56px]"
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
@@ -59,7 +59,7 @@ export function CtaFinal() {
         </motion.h2>
 
         <motion.p
-          className="mt-6 max-w-[640px] text-base leading-[1.7] text-on-dark-muted md:text-[17px] lg:text-lg"
+          className="mt-5 max-w-[640px] text-[15px] leading-[1.7] text-on-dark-muted md:mt-6 md:text-[17px] lg:text-lg"
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
@@ -69,7 +69,7 @@ export function CtaFinal() {
           {DATA.subtitle}
         </motion.p>
 
-        <div className="mt-10 flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center md:gap-4">
+        <div className="mt-8 flex w-full flex-col gap-3 md:mt-10 md:w-auto md:flex-row md:items-center md:gap-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -80,7 +80,7 @@ export function CtaFinal() {
             <WhatsAppButton
               href={DATA.ctaPrimary.href}
               ariaLabel={DATA.ctaPrimary.ariaLabel}
-              className="cta-pulse w-full px-10 py-5 text-lg md:w-auto lg:text-lg"
+              className="cta-pulse w-full py-5 text-base md:w-auto md:px-10 md:text-lg"
             >
               {DATA.ctaPrimary.text}
             </WhatsAppButton>
@@ -99,9 +99,9 @@ export function CtaFinal() {
               rel="noopener noreferrer"
               aria-label={DATA.ctaSecondary.ariaLabel}
               className={cn(
-                "inline-flex w-full items-center justify-center gap-2 rounded-full md:w-auto",
-                "border-[1.5px] border-brand-primary px-8 py-4 leading-none font-medium text-brand-accent",
-                "transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-primary/10",
+                "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full md:w-auto",
+                "border-[1.5px] border-brand-primary px-6 py-4 md:px-8 leading-none font-medium text-brand-accent",
+                "transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-primary/10 active:scale-[0.97]",
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent",
               )}
             >
@@ -113,7 +113,7 @@ export function CtaFinal() {
 
         <motion.a
           href={DATA.phoneHref}
-          className="mt-6 text-sm text-ink-subtle transition-colors hover:text-brand-accent"
+          className="mt-4 inline-flex min-h-11 items-center px-3 text-xs text-ink-subtle transition-colors hover:text-brand-accent md:mt-6 md:text-sm"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={VIEWPORT}

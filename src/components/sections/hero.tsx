@@ -64,7 +64,7 @@ export function Hero() {
     <section
       id="inicio"
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-svh items-center justify-center overflow-hidden bg-dark text-on-dark"
+      className="hero-height relative isolate flex items-center justify-center overflow-hidden bg-dark text-on-dark"
     >
       {/* ── Background: poster (LCP + reduced-motion fallback) under the looping video ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
@@ -98,7 +98,7 @@ export function Hero() {
       </div>
 
       {/* ── Content ── */}
-      <Container className="flex flex-col items-center py-24 text-center md:py-28">
+      <Container className="flex flex-col items-center py-20 text-center md:py-28">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -111,28 +111,29 @@ export function Hero() {
             width={240}
             height={96}
             preload
-            className="h-auto w-20 md:w-[100px] lg:w-[120px]"
+            className="h-auto w-[72px] md:w-[100px] lg:w-[120px]"
           />
         </motion.div>
 
         <motion.div
-          className="my-4 mt-6 origin-center"
+          className="mt-5 mb-4 origin-center md:mt-6"
           initial="hidden"
           animate="visible"
           variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1 } }}
           transition={enter(DELAY.line, 0.6)}
         >
-          <GoldLine className="h-[3px] w-12" />
+          <GoldLine className="h-[3px] w-9 md:w-12" />
         </motion.div>
 
         <h1
           id="hero-title"
-          className="max-w-[800px] font-heading text-4xl leading-[1.1] font-bold text-balance md:text-5xl lg:text-[64px] lg:leading-[1.05]"
+          className="max-w-[800px] font-heading text-[32px] leading-[1.08] font-bold tracking-[0.01em] text-balance md:text-5xl md:leading-[1.06] md:tracking-normal lg:text-[64px] lg:leading-[1.05]"
         >
           {words.map((word, i) => (
             <span key={i}>
               <motion.span
-                className="inline-block"
+                // blur is costly on phone GPUs: plain fade + rise below md
+                className="inline-block max-md:filter-none!"
                 initial="hidden"
                 animate="visible"
                 variants={wordReveal}
@@ -146,7 +147,7 @@ export function Hero() {
         </h1>
 
         <motion.p
-          className="mt-6 max-w-[600px] text-base leading-relaxed text-on-dark-muted md:text-[17px] lg:text-lg"
+          className="mt-5 max-w-[300px] text-[15px] leading-[1.7] text-on-dark-muted md:mt-6 md:max-w-[600px] md:text-[17px] lg:text-lg"
           initial="hidden"
           animate="visible"
           variants={slideUp}
@@ -155,7 +156,7 @@ export function Hero() {
           {HERO_DATA.subtitle}
         </motion.p>
 
-        <div className="mt-10 flex w-full flex-col gap-3 md:w-auto md:flex-row md:gap-4">
+        <div className="mt-8 flex w-full flex-col gap-3 md:mt-10 md:w-auto md:flex-row md:gap-4">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -181,9 +182,9 @@ export function Hero() {
               href={HERO_DATA.ctaSecondary.href}
               aria-label={HERO_DATA.ctaSecondary.ariaLabel}
               className={cn(
-                "inline-flex w-full items-center justify-center gap-2 rounded-full md:w-auto",
-                "border-[1.5px] border-brand-primary px-8 py-4 text-[15px] leading-none font-semibold text-brand-accent lg:text-base",
-                "transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-primary/10",
+                "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full md:w-auto",
+                "border-[1.5px] border-brand-primary px-6 py-4 md:px-8 text-[15px] leading-none font-semibold text-brand-accent lg:text-base",
+                "transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-primary/10 active:scale-[0.97]",
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent",
               )}
             >

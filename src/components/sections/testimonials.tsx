@@ -60,7 +60,7 @@ function TestimonialCard({ item, position }: { item: Testimonial; position: numb
       aria-roledescription="slide"
       aria-label={`Depoimento ${position} de ${TOTAL}`}
       variants={cardVariants}
-      className="relative flex shrink-0 basis-full snap-start flex-col rounded-2xl border border-line-dark bg-elevated p-5 shadow-[var(--shadow-dark-sm)] transition-[border-color,box-shadow] duration-500 hover:border-amber/30 hover:shadow-[0_4px_24px_rgba(200,148,42,0.08)] md:basis-[calc((100%-1.25rem)/2)] md:p-6 lg:basis-[calc((100%-3rem)/3)] lg:p-7"
+      className="relative flex shrink-0 basis-[85%] snap-start flex-col rounded-2xl border border-line-dark bg-elevated p-5 shadow-[var(--shadow-dark-sm)] transition-[border-color,box-shadow] duration-500 hover:border-amber/30 hover:shadow-[0_4px_24px_rgba(200,148,42,0.08)] sm:basis-[70%] md:basis-[calc((100%-1.25rem)/2)] md:p-6 lg:basis-[calc((100%-3rem)/3)] lg:p-7"
     >
       <span
         aria-hidden="true"
@@ -154,9 +154,11 @@ export function Testimonials() {
     return () => observer.disconnect();
   }, [stepSize]);
 
-  // autoplay: only while visible, not hovered/focused, and without reduced motion
+  // autoplay: only while visible, not hovered/focused, without reduced motion — and not on
+  // phones, where it would fight the user's own swiping
   useEffect(() => {
     if (paused || reduceMotion || !inView || maxIndex === 0) return;
+    if (window.matchMedia("(max-width: 767px)").matches) return;
     const timer = setTimeout(() => goTo(index >= maxIndex ? 0 : index + 1), AUTOPLAY_MS);
     return () => clearTimeout(timer);
   }, [index, maxIndex, paused, reduceMotion, inView, goTo]);
@@ -177,7 +179,7 @@ export function Testimonials() {
     <section
       id="depoimentos"
       aria-labelledby="testimonials-title"
-      className="relative overflow-hidden bg-charcoal py-20 lg:py-32"
+      className="relative overflow-hidden bg-charcoal py-16 md:py-20 lg:py-32"
     >
       <Noise />
       <Container className="relative">
@@ -195,7 +197,7 @@ export function Testimonials() {
           role="region"
           aria-roledescription="carousel"
           aria-label="Depoimentos de clientes"
-          className="mt-12"
+          className="mt-10 md:mt-12"
           onPointerEnter={(e) => e.pointerType === "mouse" && setPaused(true)}
           onPointerLeave={(e) => e.pointerType === "mouse" && setPaused(false)}
           onFocus={() => setPaused(true)}
@@ -207,7 +209,7 @@ export function Testimonials() {
           <motion.div
             ref={trackRef}
             onScroll={onScroll}
-            className="no-scrollbar -my-3 flex snap-x snap-mandatory gap-4 overflow-x-auto py-3 md:gap-5 lg:gap-6"
+            className="no-scrollbar -mx-5 -my-3 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 py-3 md:mx-0 md:scroll-px-0 md:gap-5 md:px-0 lg:gap-6"
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT}
@@ -218,9 +220,20 @@ export function Testimonials() {
             ))}
           </motion.div>
 
-          <div className="mt-8 flex items-center justify-center gap-6">
+          <motion.p
+            aria-hidden="true"
+            className="mt-4 text-center text-xs text-ivory-faint md:hidden"
+            initial={{ opacity: 1 }}
+            whileInView={{ opacity: 0 }}
+            viewport={{ once: true, amount: 1 }}
+            transition={{ delay: 3, duration: 1 }}
+          >
+            ← Arraste para ver mais →
+          </motion.p>
+
+          <div className="mt-4 flex items-center justify-center gap-6 md:mt-8">
             <ArrowButton direction="prev" onClick={() => goTo(index - 1)} disabled={index === 0} />
-            <div className="flex items-center gap-2">
+            <div className="flex items-center">
               {Array.from({ length: maxIndex + 1 }, (_, i) => {
                 const active = i === index;
                 return (
@@ -230,7 +243,7 @@ export function Testimonials() {
                     onClick={() => goTo(i)}
                     aria-label={`Ir para o depoimento ${i + 1}`}
                     aria-current={active ? "true" : undefined}
-                    className="flex size-6 cursor-pointer items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-amber-glow"
+                    className="flex size-11 cursor-pointer items-center justify-center rounded-full focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-amber-glow"
                   >
                     <motion.span
                       animate={active ? { scale: [1, 1.3, 1] } : { scale: 1 }}
@@ -250,7 +263,7 @@ export function Testimonials() {
 
         {/* ── Stats bar ── */}
         <motion.dl
-          className="mt-12 grid grid-cols-2 gap-y-8 rounded-2xl border border-line-dark bg-elevated p-6 shadow-[var(--shadow-dark-md)] md:grid-cols-4 md:divide-x md:divide-line-dark md:p-8"
+          className="mt-10 grid grid-cols-2 gap-y-6 rounded-2xl border border-line-dark bg-elevated px-4 py-6 shadow-[var(--shadow-dark-md)] md:mt-12 md:grid-cols-4 md:divide-x md:divide-line-dark md:p-8"
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
@@ -258,7 +271,7 @@ export function Testimonials() {
         >
           {STATS_DATA.map((stat) => (
             <div key={stat.label} className="flex flex-col-reverse items-center gap-1 px-2 text-center">
-              <dt className="text-sm text-ivory-muted">{stat.label}</dt>
+              <dt className="text-[13px] leading-snug text-ivory-muted md:text-sm">{stat.label}</dt>
               <dd className="font-heading text-[28px] leading-none font-bold text-ivory md:text-[32px] lg:text-4xl">
                 <CountUp value={stat.number} suffix={stat.suffix} />
               </dd>

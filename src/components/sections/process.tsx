@@ -15,7 +15,7 @@ const VIEWPORT = { once: true, amount: 0.3 };
 
 const listVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 const numberPulse: Variants = {
@@ -45,7 +45,7 @@ export function Process() {
     <section
       id="processo"
       aria-labelledby="process-title"
-      className="relative overflow-hidden bg-light py-28 lg:py-40"
+      className="relative overflow-hidden bg-light py-24 md:py-28 lg:py-40"
     >
       {/* light "respiro" #2: fade in from B2B (deep), fade out into Testimonials (base) */}
       <EdgeFade edge="top" className="from-deep to-light" />
@@ -63,7 +63,7 @@ export function Process() {
         </motion.div>
 
         <motion.ol
-          className="relative mt-12 flex flex-col md:mt-16 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-4"
+          className="relative mt-10 flex flex-col md:mt-16 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-4"
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
@@ -83,13 +83,13 @@ export function Process() {
               <motion.li
                 key={step.number}
                 variants={scrollReveal}
-                className="group relative flex gap-5 pb-10 last:pb-0 md:flex-col md:items-center md:gap-0 md:pb-0 md:text-center"
+                className="group relative flex gap-4 pb-8 last:pb-0 md:flex-col md:items-center md:gap-0 md:pb-0 md:text-center"
               >
                 {!isLast && (
                   <motion.span
                     aria-hidden="true"
                     variants={segmentDraw}
-                    className="absolute top-12 bottom-2 left-5 origin-top -translate-x-1/2 border-l-2 border-dashed border-line-light md:hidden"
+                    className="absolute top-12 bottom-2 left-5 origin-top -translate-x-1/2 border-l-2 border-dashed border-amber/30 md:hidden"
                   />
                 )}
 
@@ -101,17 +101,18 @@ export function Process() {
                   {step.number}
                 </motion.span>
 
-                <div className="flex flex-col md:items-center">
-                  <div className="mb-3 flex size-12 items-center justify-center rounded-full bg-amber/10 text-amber-deep transition-colors duration-300 group-hover:bg-amber group-hover:text-deep md:mb-4 md:size-14 lg:size-16">
+                {/* mobile timeline: number → text (icon only from md, where there is room) */}
+                <div className="flex flex-col pt-1.5 md:items-center md:pt-0">
+                  <div className="mb-3 hidden size-12 items-center justify-center rounded-full bg-amber/10 text-amber-deep transition-colors duration-300 group-hover:bg-amber group-hover:text-deep md:mb-4 md:flex md:size-14 lg:size-16">
                     <motion.span variants={iconSpin} className="flex">
                       <Icon aria-hidden="true" className="size-6 md:size-7 lg:size-8" strokeWidth={1.75} />
                     </motion.span>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold text-on-light">
+                  <h3 className="mb-1.5 text-lg font-semibold text-on-light md:mb-2">
                     <span className="sr-only">Passo {step.number}: </span>
                     {step.title}
                   </h3>
-                  <p className="max-w-[260px] text-sm leading-[1.6] text-on-light-muted md:max-w-[220px]">
+                  <p className="text-sm leading-[1.7] text-on-light-muted md:max-w-[220px] md:leading-[1.6]">
                     {step.description}
                   </p>
                 </div>

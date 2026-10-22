@@ -146,12 +146,24 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-body);
+  /* landscape iPhones: keep content clear of the notch (viewport-fit=cover) */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hero height: 100vh fallback, then the small viewport (excludes mobile browser bars) */
+.hero-height {
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -188,6 +200,13 @@ body {
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* a touch slower on phones, where the strip is narrower */
+@media (max-width: 767px) {
+  .marquee-track {
+    animation-duration: 55s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

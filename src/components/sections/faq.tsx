@@ -53,7 +53,7 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" aria-labelledby="faq-title" className="relative overflow-x-clip bg-charcoal py-20 lg:py-32">
+    <section id="faq" aria-labelledby="faq-title" className="relative overflow-x-clip bg-charcoal py-16 md:py-20 lg:py-32">
       <Noise />
       {/* same background as Testimonials above and dark CTA below → amber hairlines instead of a cut */}
       <AmberDivider />
@@ -63,7 +63,7 @@ export function Faq() {
           <SectionHeader id="faq-title" title={FAQ_SECTION.headline} highlight={FAQ_SECTION.highlightWord} tone="dark" />
         </motion.div>
 
-        <div className="mt-12 flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
+        <div className="mt-10 flex flex-col gap-10 md:mt-12 lg:grid lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
           <motion.div
             className="flex flex-col gap-2"
             initial="hidden"
@@ -91,16 +91,14 @@ export function Faq() {
                       aria-expanded={isOpen}
                       aria-controls={panelId}
                       onClick={() => setOpen(isOpen ? null : i)}
-                      className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-5 text-left transition-colors duration-200 hover:bg-subtle focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-amber-glow md:px-6"
+                      className="flex w-full cursor-pointer items-center justify-between gap-3 py-3 pr-3 pl-4 text-left active:bg-subtle md:gap-4 md:py-4 md:pr-4 md:pl-6 transition-colors duration-200 hover:bg-subtle focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-amber-glow md:px-6"
                     >
                       <span className="text-[15px] font-semibold text-ivory md:text-base">{item.question}</span>
-                      <ChevronDown
-                        aria-hidden="true"
-                        className={cn(
-                          "size-5 shrink-0 text-amber transition-transform duration-200",
-                          isOpen && "rotate-180",
-                        )}
-                      />
+                      <span aria-hidden="true" className="flex size-10 shrink-0 items-center justify-center rounded-full bg-amber/5">
+                        <ChevronDown
+                          className={cn("size-5 text-amber transition-transform duration-200", isOpen && "rotate-180")}
+                        />
+                      </span>
                     </button>
                   </h3>
                   <AnimatePresence initial={false}>
@@ -114,7 +112,7 @@ export function Faq() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <div className="mx-5 border-t border-line-dark pt-4 pb-5 text-[15px] leading-[1.7] text-ivory-muted md:mx-6">
+                        <div className="mx-4 border-t border-line-dark pt-4 pb-5 text-sm leading-[1.7] text-ivory-muted md:mx-6 md:text-[15px]">
                           {item.answer}
                         </div>
                       </motion.div>

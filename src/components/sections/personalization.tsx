@@ -11,6 +11,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import { EASE_OUT_QUAD, scrollReveal, slideInLeft, staggerContainer } from "@/lib/animations";
 import { PERSONALIZATION_DATA as DATA } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 const VIEWPORT = { once: true, amount: 0.3 };
 
@@ -29,17 +30,37 @@ const listVariants: Variants = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
+function StatBadge({ className }: { className?: string }) {
+  return (
+    <motion.div
+      variants={scrollReveal}
+      className={cn(
+        "relative mx-auto w-max items-center gap-3 rounded-lg border bg-elevated px-4 py-3 shadow-[var(--shadow-dark-lg)]",
+        className,
+      )}
+    >
+      <Building2 aria-hidden="true" className="size-6 text-amber" strokeWidth={1.5} />
+      <p className="flex items-baseline gap-2">
+        <span className="font-heading text-[28px] leading-none font-bold text-amber-glow md:text-[32px]">
+          <CountUp value={DATA.stat.value} suffix={DATA.stat.suffix} />
+        </span>
+        <span className="text-[13px] text-ivory-muted">{DATA.stat.label}</span>
+      </p>
+    </motion.div>
+  );
+}
+
 export function Personalization() {
   return (
     <section
       id="personalizacao"
       aria-labelledby="personalization-title"
-      className="relative overflow-hidden bg-deep pt-20 pb-12 text-ivory lg:pt-32 lg:pb-16"
+      className="relative overflow-hidden bg-deep pt-16 pb-12 text-ivory md:pt-20 lg:pt-32 lg:pb-16"
     >
       <Noise />
       <AmberDivider />
       <Container className="relative">
-        {/* Mobile: intro → mockup → benefits/CTA. md+: text left, mockup spanning the right column. */}
+        {/* Mobile: intro → mockup → benefits → stat → CTA. md+: text left, mockup (+ stat) spanning the right column. */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-10 md:gap-y-8 lg:gap-x-16">
           <motion.div
             className="self-end md:col-start-1 md:row-start-1"
@@ -66,7 +87,7 @@ export function Personalization() {
             </motion.div>
             <motion.p
               variants={slideInLeft}
-              className="mt-6 max-w-[520px] text-base leading-[1.7] text-ivory-muted"
+              className="mt-6 max-w-[520px] text-[15px] leading-[1.7] text-ivory-muted md:text-base"
             >
               {DATA.paragraph}
             </motion.p>
@@ -81,9 +102,9 @@ export function Personalization() {
           >
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -inset-10 -z-0 bg-[radial-gradient(circle_at_center,rgba(200,148,42,0.2)_0%,transparent_65%)]"
+              className="pointer-events-none absolute -inset-6 -z-0 bg-[radial-gradient(circle_at_center,rgba(200,148,42,0.2)_0%,transparent_65%)] md:-inset-10"
             />
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border-[1.5px] border-line-dark-strong shadow-[0_0_40px_rgba(200,148,42,0.15)] md:aspect-square">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border-[1.5px] border-line-dark-strong md:rounded-2xl shadow-[0_0_40px_rgba(200,148,42,0.15)] md:aspect-square">
               <Image
                 src={DATA.image.src}
                 alt={DATA.image.alt}
@@ -93,18 +114,8 @@ export function Personalization() {
               />
             </div>
 
-            <motion.div
-              variants={scrollReveal}
-              className="relative mx-auto -mt-8 flex w-max items-center gap-3 rounded-lg border border-line-dark bg-elevated px-4 py-3 shadow-[var(--shadow-dark-lg)]"
-            >
-              <Building2 aria-hidden="true" className="size-6 text-amber" strokeWidth={1.5} />
-              <p className="flex items-baseline gap-2">
-                <span className="font-heading text-[32px] leading-none font-bold text-amber-glow">
-                  <CountUp value={DATA.stat.value} suffix={DATA.stat.suffix} />
-                </span>
-                <span className="text-[13px] text-ivory-muted">{DATA.stat.label}</span>
-              </p>
-            </motion.div>
+            {/* overlaps the mockup on md+; on mobile it sits right before the CTA instead */}
+            <StatBadge className="-mt-8 hidden border-line-dark md:flex" />
           </motion.div>
 
           <div className="self-start md:col-start-1 md:row-start-2">
@@ -124,7 +135,16 @@ export function Personalization() {
             </motion.ul>
 
             <motion.div
-              className="mt-10"
+              className="mt-8 md:hidden"
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT}
+            >
+              <StatBadge className="flex border-amber/30" />
+            </motion.div>
+
+            <motion.div
+              className="mt-8 md:mt-10"
               initial="hidden"
               whileInView="visible"
               viewport={VIEWPORT}

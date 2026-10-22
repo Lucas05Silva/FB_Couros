@@ -63,7 +63,7 @@ export function Products() {
     <section
       id="produtos"
       aria-labelledby="products-title"
-      className="relative overflow-hidden bg-charcoal py-20 lg:py-32"
+      className="relative overflow-hidden bg-charcoal py-16 md:py-20 lg:py-32"
     >
       <Noise />
       <Container className="relative">
@@ -78,7 +78,7 @@ export function Products() {
 
         {/* ── Filter tabs ── */}
         <motion.div
-          className="no-scrollbar -mx-4 mt-10 overflow-x-auto px-4 md:mx-0 md:overflow-visible md:px-0"
+          className="no-scrollbar -mx-5 mt-8 snap-x snap-mandatory scroll-px-5 overflow-x-auto px-5 pb-2 md:mx-0 md:mt-10 md:overflow-visible md:px-0 md:pb-0"
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
@@ -107,7 +107,7 @@ export function Products() {
                   onClick={() => select(i)}
                   onKeyDown={(e) => onTabKeyDown(e, i)}
                   className={cn(
-                    "shrink-0 cursor-pointer rounded-full border px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-200",
+                    "min-h-11 shrink-0 cursor-pointer snap-start rounded-full border px-5 py-3 text-sm font-medium whitespace-nowrap transition-all duration-200 active:scale-[0.97]",
                     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-glow",
                     selected
                       ? "border-transparent bg-gradient-to-r from-amber to-amber-glow font-semibold text-deep shadow-[var(--shadow-amber)]"
@@ -126,7 +126,7 @@ export function Products() {
           id={PANEL_ID}
           role="tabpanel"
           aria-labelledby={tabId(active)}
-          className="relative mt-8 grid grid-cols-2 gap-3 md:mt-10 md:gap-4 lg:grid-cols-3 lg:gap-6"
+          className="relative mt-6 grid grid-cols-2 gap-3 md:mt-10 md:gap-5 lg:grid-cols-3 lg:gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
@@ -149,11 +149,11 @@ export function Products() {
                   className={cn(
                     "group flex h-full flex-col overflow-hidden rounded-xl border border-line-dark bg-elevated shadow-[var(--shadow-dark-sm)]",
                     "transition-all duration-400 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
-                    "hover:-translate-y-1 hover:border-amber/30 hover:bg-subtle hover:shadow-[var(--shadow-amber)]",
+                    "hover:-translate-y-1 hover:border-amber/30 hover:bg-subtle hover:shadow-[var(--shadow-amber)] active:scale-[0.98]",
                     "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-glow",
                   )}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[3/4] overflow-hidden md:aspect-[4/3]">
                     <Image
                       src={product.image}
                       alt={product.alt}
@@ -207,7 +207,7 @@ export function Products() {
           <WhatsAppButton
             href={PRODUCTS_SECTION.ctaHref}
             ariaLabel={PRODUCTS_SECTION.ctaAriaLabel}
-            className="w-full px-10 md:w-auto"
+            className="w-full md:w-auto md:px-10"
           >
             {PRODUCTS_SECTION.ctaText}
           </WhatsAppButton>

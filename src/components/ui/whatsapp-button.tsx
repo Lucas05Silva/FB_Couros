@@ -24,9 +24,9 @@ export function WhatsAppButton({ href, children, ariaLabel, icon, className }: W
       rel="noopener noreferrer"
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-8 py-4",
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-4 md:px-8",
         "text-[15px] leading-none font-semibold text-white lg:text-base",
-        "transition-all duration-300 hover:-translate-y-0.5 hover:bg-whatsapp-hover",
+        "transition-all duration-300 hover:-translate-y-0.5 hover:bg-whatsapp-hover active:scale-[0.97]",
         "hover:shadow-[0_4px_20px_rgba(37,211,102,0.3)]",
         "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-whatsapp",
         className,
